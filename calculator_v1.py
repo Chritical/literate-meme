@@ -6,6 +6,14 @@ from tkinter import ttk
 root = Tk()
 root.title("Calculator")
 
+
+class NumberButton(Button):
+    def __init__(self):
+        super().__init__(root, command=self.append)
+    
+    def append(self):
+        entry_text.set(entry_text + self.text)
+
 entry_frame = Frame(root)
 entry_frame.grid(row=0, column=0, columnspan=2)
 
@@ -14,12 +22,6 @@ number_frame.grid(row=1, column=0)
 
 operator_frame = Frame(root)
 operator_frame.grid(row=1, column=1)
-
-
-class NumberButton(Button):
-    
-  def command(self):
-    entry_text += text
 
 entry_text = StringVar()
 entry_field = Entry(entry_frame, textvariable=entry_text)
